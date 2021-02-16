@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import './app.scss';
+import './app.scss'
 
 export default function App() {
-  return <p>Rollup + TypeScript + React = ❤️</p>;
+  return <p>ddd + TypeScript + React = ❤️</p>
 }
