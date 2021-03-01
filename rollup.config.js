@@ -1,30 +1,22 @@
-import replace from '@rollup/plugin-replace'
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import babel from 'rollup-plugin-babel'
-import html from 'rollup-plugin-generate-html-template'
-import { terser } from 'rollup-plugin-terser'
-import serve from 'rollup-plugin-serve'
-import livereload from 'rollup-plugin-livereload'
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import pkg from "./package.json";
 
-const isProd = process.env.NODE_ENV === 'production'
-const extensions = ['.js', '.ts', '.tsx']
+const extensions = [".js", ".ts", ".tsx"];
 
 export default {
   // 번들링 엔트리 파일 설정 (ReactDOM.render이 작성된 파일)
-  input: 'src/index.tsx',
+  input: "src/index.tsx",
   // 번들링 결과물 설정
   output: {
-    file: 'public/index.js', // 파일명
-    format: 'es', // 파일포맷
+    file: pkg.main, // 파일명
+    format: "es", // 파일포맷
+    exports: "named",
   },
   // react, TS, CSS, SCSS, Emotion 등 해석을 위한 설정
   plugins: [
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(
-        isProd ? 'production' : 'development',
-      ),
-    }),
     // 해석할 파일의 확장자들
     resolve({
       extensions,
@@ -37,48 +29,35 @@ export default {
     babel({
       extensions,
       exclude: /node_modules/,
-      babelrc: false,
-      runtimeHelpers: true,
       presets: [
-        '@babel/preset-env',
-        '@babel/preset-react',
-        '@babel/preset-typescript',
-        // '@emotion/babel-preset-css-prop',
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "@babel/preset-typescript",
       ],
-      plugins: [
-        'react-require',
-        '@babel/plugin-syntax-dynamic-import',
-        '@babel/plugin-proposal-class-properties',
-        [
-          '@babel/plugin-proposal-object-rest-spread',
-          {
-            useBuiltIns: true,
-          },
-        ],
-      ],
+      plugins: ["@emotion", ["module-resolver", { root: ["./src/"] }]],
     }),
     // 번들링 결과물의 html 파일 생성 설정
     // React 프로젝트에서 <div id='app'></div> 이 있는 html 파일과 동일한 역할
-    html({
-      template: 'src/index.html', // 번들링 할 html 파일 위치
-      target: 'public/index.html', // 번들링 결과물 경로, output 설정의 경로와 동일하게 설정
-    }),
+    // html({
+    //   template: 'src/index.html', // 번들링 할 html 파일 위치
+    //   target: 'public/index.html', // 번들링 결과물 경로, output 설정의 경로와 동일하게 설정
+    // }),
     // 번들링 결과물의 minify 설정
-    isProd && terser(),
+    terser(),
     // devServer 설정
-    !isProd &&
-      serve({
-        host: 'localhost', //URL
-        port: 3000, //포트번호
-        open: true, //true 시 rollup.config.js에 변경이 일어나면 매번 새창으로 열림
-        contentBase: ['public'], //devServer에 보여줄 '번들링 된 결과물'
-      }),
+    // !isProd &&
+    //   serve({
+    //     host: 'localhost', //URL
+    //     port: 3000, //포트번호
+    //     open: true, //true 시 rollup.config.js에 변경이 일어나면 매번 새창으로 열림
+    //     contentBase: ['public'], //devServer에 보여줄 '번들링 된 결과물'
+    //   }),
     // hotReload 기능 활성화
     // public 또는 rollup.config.js에 변화가 발생하면 알아서 다시 번들링 해주고 새로고침해주는 기능
     // 이게 없으면 매번 수정 후 번들 따로 해주고 devserver 실행해주는 번거로움 발생
-    !isProd &&
-      livereload({
-        watch: 'public',
-      }),
+    // !isProd &&
+    //   livereload({
+    //     watch: 'public',
+    //   }),
   ],
-}
+};
