@@ -1,2 +1,1 @@
-- rollup으로 빌드하기
-- 참고: https://github.com/saltyshiomix/rollup-typescript-react-starter
+- 최종배포전 테스트 중...

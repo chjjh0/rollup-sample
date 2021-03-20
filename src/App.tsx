@@ -1,18 +1,90 @@
-import React from 'react'
-// import styled from '@emotion/styled'
+import {
+  Direction,
+  FloatMenuItemButton,
+  FloatingGroup,
+  Size,
+} from "./FloatButton";
+import { Facebook, Instagram, Share } from "@emotion-icons/remix-fill";
+import React, { ReactElement } from "react";
 
-export default function App() {
-  // const Button = styled.button`
-  //   padding: 32px;
-  //   background-color: hotpink;
-  //   font-size: 24px;
-  //   border-radius: 4px;
-  //   color: black;
-  //   font-weight: bold;
-  //   &:hover {
-  //     color: white;
-  //   }
-  // `
+import { Twitter } from "@emotion-icons/simple-icons";
+import styled from "@emotion/styled";
 
-  return <p>aa + TypeScript + React = ❤️</p>
+function App(): ReactElement {
+  const renderFloatButton = (direction: Direction) => (
+    <FloatingGroup size={Size.REGULAR} direction={direction}>
+      <FloatMenuItemButton
+        icon={<Twitter size="50%" />}
+        buttonColor="#00ACEE"
+      />
+      <FloatMenuItemButton
+        icon={<Instagram size="50%" />}
+        buttonColor="#4f5bd5"
+      />
+      <FloatMenuItemButton
+        icon={<Facebook size="50%" />}
+        buttonColor="#3B5998"
+      />
+      <FloatMenuItemButton icon={<Share size="50%" />} buttonColor="#16dbc2" />
+    </FloatingGroup>
+  );
+
+  return (
+    <Container>
+      <Wrapper>
+        <ItemWrapper>
+          Direction.BOTTOM
+          {renderFloatButton(Direction.BOTTOM)}
+        </ItemWrapper>
+        <ItemWrapper style={{ top: "340px", position: "relative" }}>
+          {renderFloatButton(Direction.TOP)}
+          Direction.TOP
+        </ItemWrapper>
+        <HorizonWrapper>
+          <ItemWrapper style={{ left: "320px", position: "relative" }}>
+            Direction.LEFT
+            {renderFloatButton(Direction.LEFT)}
+          </ItemWrapper>
+          <ItemWrapper>
+            Direction.RIGHT
+            {renderFloatButton(Direction.RIGHT)}
+          </ItemWrapper>
+        </HorizonWrapper>
+      </Wrapper>
+    </Container>
+  );
 }
+
+const Container = styled.div`
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+`;
+
+const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
+
+const HorizonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
+
+export default App;

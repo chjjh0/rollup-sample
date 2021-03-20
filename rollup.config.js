@@ -1,14 +1,16 @@
+import pkg from "./package.json";
+// plugin
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "rollup-plugin-babel";
+import cssbundle from "rollup-plugin-css-bundle";
 import { terser } from "rollup-plugin-terser";
-import pkg from "./package.json";
 
 const extensions = [".js", ".ts", ".tsx"];
 
 export default {
   // 번들링 엔트리 파일 설정 (ReactDOM.render이 작성된 파일)
-  input: "src/index.tsx",
+  input: "src/FloatButton/index.tsx",
   // 번들링 결과물 설정
   output: {
     file: pkg.main, // 파일명
@@ -36,6 +38,8 @@ export default {
       ],
       plugins: ["@emotion", ["module-resolver", { root: ["./src/"] }]],
     }),
+    cssbundle(),
+
     // 번들링 결과물의 html 파일 생성 설정
     // React 프로젝트에서 <div id='app'></div> 이 있는 html 파일과 동일한 역할
     // html({

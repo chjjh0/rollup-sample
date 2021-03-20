@@ -1,6 +1,6 @@
 {
   "name": "react-button-from-junghun",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "main": "lib/index.min.js",
   "description": "react + emotion + rollup ===> npm에 Button 라이브러리 배포해보기",
   "directories": {
@@ -54,6 +54,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.39.0",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-css-bundle": "^1.0.4",
     "rollup-plugin-generate-html-template": "^1.7.0",
     "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-scss": "^2.1.0",
