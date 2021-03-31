@@ -38,7 +38,7 @@ export default {
       ],
       plugins: ["@emotion", ["module-resolver", { root: ["./src/"] }]],
     }),
-    cssbundle(),
+    // cssbundle(),
 
     // 번들링 결과물의 html 파일 생성 설정
     // React 프로젝트에서 <div id='app'></div> 이 있는 html 파일과 동일한 역할

@@ -1,19 +1,50 @@
 {
-  "name": "react-button-from-junghun",
-  "version": "1.0.5",
+  "name": "react-motion-float-button",
+  "version": "1.0.0",
   "main": "lib/index.min.js",
-  "description": "react + emotion + rollup ===> npm에 Button 라이브러리 배포해보기",
-  "directories": {
-    "lib": "lib"
+  "author": {
+    "name": "FEbase",
+    "email": "b@rubble.com",
+    "url": "http://barnyrubble.tumblr.com/"
   },
+  "contributors": [
+    {
+      "name": "Wonjong Oh",
+      "email": "jgyuity1289@gmail.com",
+      "url": "http://barnyrubble.tumblr.com/"
+    },
+    {
+      "name": "SeoYoung Um",
+      "email": "tjdud0123@naver.com",
+      "url": "https://github.com/tjdud0123/"
+    },
+    {
+      "name": "JungHun Choi",
+      "email": "chjjh@naver.com",
+      "url": "https://github.com/chjjh0/"
+    },
+    {
+      "name": "JinSun Park",
+      "email": "jsunee.dev@gmail.com",
+      "url": "https://github.com/jinsunee/"
+    }
+  ],
+  "keywords": [
+    "FAB",
+    "Floating",
+    "Action",
+    "Button",
+    "React",
+    "Web"
+  ],
+  "description": "A simple React component floating button library which can be customized by developers.",
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "https://github.com/Febase/react-motion-float-button"
   },
-  "keywords": [
-    "fab"
-  ],
-  "author": "junghun",
+  "bugs": {
+    "url": "https://github.com/Febase/react-motion-float-button/issues"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rollup -c"

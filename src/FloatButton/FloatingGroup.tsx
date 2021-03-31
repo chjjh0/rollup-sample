@@ -48,25 +48,35 @@ function FloatingGroup(props: Props): ReactElement {
   };
 
   return (
-    <Container style={containerStyle} direction={direction}>
-      <RootButton
-        onClick={handleSpread}
-        style={rootButtonContainerStyle}
-        size={size}
-        spacing={spacing / 2}
-      >
-        <RootButtonWrapper isSpread={isSpread}>
-          {renderRootButtonElement}
-        </RootButtonWrapper>
-      </RootButton>
-      {renderChildren}
-    </Container>
+    <ItemWrapper>
+      <Container style={containerStyle} direction={direction}>
+        <RootButton
+          onClick={handleSpread}
+          style={rootButtonContainerStyle}
+          size={size}
+          spacing={spacing / 2}
+        >
+          <RootButtonWrapper isSpread={isSpread}>
+            {renderRootButtonElement}
+          </RootButtonWrapper>
+        </RootButton>
+        {renderChildren}
+      </Container>
+    </ItemWrapper>
   );
 }
 
 type ContainerStyleProps = {
   direction: Direction;
 };
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
 
 const Container = styled.ul<ContainerStyleProps>`
   display: flex;
